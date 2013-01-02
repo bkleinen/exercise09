@@ -11,9 +11,9 @@ public class Day
     public static final int FINAL_APPOINTMENT_TIME = 17;
     // The number of bookable hours in a day.
     public static final int MAX_APPOINTMENTS_PER_DAY =
-                                FINAL_APPOINTMENT_TIME -
-                                START_OF_DAY + 1;
-    
+        FINAL_APPOINTMENT_TIME -
+        START_OF_DAY + 1;
+
     // A day number within a particular year. (1-366)
     private int dayNumber;
     // The current list of appointments for this day.
@@ -51,9 +51,9 @@ public class Day
                     // How many more slots are needed?
                     int further_slots_required = duration - 1;
                     for(int nextSlot = slot + 1;
-                                further_slots_required > 0 &&
-                                appointments[nextSlot] == null;
-                                    nextSlot++) {
+                    further_slots_required > 0 &&
+                    appointments[nextSlot] == null;
+                    nextSlot++) {
                         further_slots_required--;
                     }
                     if(further_slots_required == 0) {
@@ -75,7 +75,7 @@ public class Day
      *         false otherwise.
      */
     public boolean makeAppointment(int time,
-                                   Appointment appointment)
+    Appointment appointment)
     {
         if(validTime(time)) {
             int startTime = time - START_OF_DAY;
@@ -96,7 +96,7 @@ public class Day
             return false;
         }
     }
-    
+
     /**
      * @param time Which time of day. This must be between the
      *        START_OF_DAY time and the FINAL_APPOINTMENT_TIME.
@@ -119,18 +119,21 @@ public class Day
      */
     public void showAppointments()
     {
-        System.out.println("=== Day " + dayNumber + " ===");
+        System.out.println(getAppointments());
+    }
+
+    public String getAppointments(){
+        String result = "=== Day " + dayNumber + " ===" ;
         int time = START_OF_DAY;
         for(Appointment appointment : appointments) {
-            System.out.print(time + ": ");
-            if(appointment != null) {
-                System.out.println(appointment.getDescription());
-            }
-            else {
-                System.out.println();
-            }
+            result += time + ": ";
+            if(appointment != null) 
+                result += appointment.getDescription();
+
+            result += "\n";
             time++;
         }
+        return result;
     }
 
     /**
@@ -140,7 +143,7 @@ public class Day
     {
         return dayNumber;
     }
-    
+
     /**
      * @return true if the time is between FINAL_APPOINTMENT_TIME and
      *         END_OF_DAY, false otherwise.
