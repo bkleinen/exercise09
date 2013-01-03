@@ -123,7 +123,7 @@ public class Day
     }
 
     public String getAppointments(){
-        String result = "=== Day " + dayNumber + " ===" ;
+        String result = "=== Day " + dayNumber + " ===\n" ;
         int time = START_OF_DAY;
         for(Appointment appointment : appointments) {
             result += time + ": ";
